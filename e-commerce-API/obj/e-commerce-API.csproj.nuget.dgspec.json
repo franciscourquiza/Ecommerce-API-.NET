@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj": {}
+    "C:\\Users\\cvpru\\OneDrive\\Escritorio\\TPI-Ecommerce.API\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj": {
+    "C:\\Users\\cvpru\\OneDrive\\Escritorio\\TPI-Ecommerce.API\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+        "projectUniqueName": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\TPI-Ecommerce.API\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
         "projectName": "e-commerce-API",
-        "projectPath": "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
-        "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
+        "projectPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\TPI-Ecommerce.API\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+        "packagesPath": "C:\\Users\\cvpru\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\TPI-Ecommerce.API\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cvpru\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,9 +40,33 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.5.0, )"
             }
           },
           "imports": [
@@ -64,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
