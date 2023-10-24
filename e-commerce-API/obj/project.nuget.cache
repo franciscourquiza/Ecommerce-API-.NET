@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "SLjAXT1hMrgOuHsWk+Lr8mUeS4G+doEfqX5shFwdWTyeL5JazTa0HCljVoY0GZ3zIWzy0cKvyuLq0bFUJCzVdg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\josed\\source\\repos\\programacion-3\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\josed\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\josed\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\josed\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\josed\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\josed\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\josed\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
