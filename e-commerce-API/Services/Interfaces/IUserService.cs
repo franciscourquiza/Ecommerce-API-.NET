@@ -9,6 +9,7 @@ namespace e_commerce_API.Services.Interfaces
         public User? ValidateUser(AuthenticationRequestBody authenticationRequestBody);
         public User? GetById(int userId);
         Task<bool> SaveChangesAsync();
+        void CreateUser(User userToCreate);
         void DeleteUser(User userToDelete);
     }
 }

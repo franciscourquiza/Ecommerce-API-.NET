@@ -5,6 +5,7 @@ using e_commerce_API.Models;
 using e_commerce_API.Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using e_commerce_API.Data.Entities;
+using System.Runtime.InteropServices;
 
 namespace e_commerce_API.Services.Implementations
 {
@@ -26,6 +27,14 @@ namespace e_commerce_API.Services.Implementations
         public User? GetById(int userId)
         {
             return _context.Users.SingleOrDefault(u => u.Id == userId);
+        }
+        public void CreateUser(User userToCreate) 
+        {
+            if (userToCreate == null) 
+            { 
+                throw new ArgumentNullException(nameof(userToCreate));
+            }
+            _context.Users.Add(_mapper.Map<User>(userToCreate));
         }
         public void DeleteUser(User userToDelete) 
         {
