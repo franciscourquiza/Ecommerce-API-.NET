@@ -14,6 +14,19 @@ namespace e_commerce_API.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
+        [HttpDelete("Id")]
+        public async Task<IActionResult> DeleteUser(int userId) 
+        {
+            var userDelete = _userService.GetById(userId);
+            if (userDelete != null) 
+            {
+                return BadRequest("Id inexistente");
+            }
+
+            _userService.DeleteUser(userDelete);
+            await _userService.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
