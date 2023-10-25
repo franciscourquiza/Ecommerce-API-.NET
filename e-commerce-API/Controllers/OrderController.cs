@@ -2,7 +2,7 @@
 
 namespace e_commerce_API.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : ControllerBase
     {
         public IActionResult Index()
         {
