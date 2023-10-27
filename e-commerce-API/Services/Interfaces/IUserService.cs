@@ -8,8 +8,8 @@ namespace e_commerce_API.Services.Interfaces
     {
         public User? GetById(int userId);
         Task<bool> SaveChangesAsync();
-        void DeleteUser(User userEntityToDelete);
+        void DeleteUser(UserDto userEntityToDelete);
         Tuple<bool, User?> ValidateUser(string? email, string? password);
-        void AddUser(User userEntity);
+        void AddUser(UserDto userForCreation);
     }
 }

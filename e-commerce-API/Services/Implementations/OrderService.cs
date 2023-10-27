@@ -24,5 +24,9 @@ namespace e_commerce_API.Services.Implementations
             if (orderDto == null) throw new ArgumentNullException(nameof(orderDto));
             _context.Orders.Add(_mapper.Map<Order>(orderDto));
         }
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() > 0); //devuelve true si 1 o mas entidades fueron modificadas
+        }
     }
 }
