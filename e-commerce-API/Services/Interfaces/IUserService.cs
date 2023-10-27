@@ -8,7 +8,7 @@ namespace e_commerce_API.Services.Interfaces
     {
         public User? GetByEmail(string userEmail);
         Task<bool> SaveChangesAsync();
-        void DeleteUser(UserDto userEntityToDelete);
+        void DeleteUser(User userToDeleteDto);
         Tuple<bool, User?> ValidateUser(string? email, string? password);
         void AddUser(UserDto userForCreation);
     }
