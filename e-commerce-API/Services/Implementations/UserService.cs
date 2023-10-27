@@ -39,12 +39,12 @@ namespace e_commerce_API.Services.Implementations
             }
             _context.Add(newUserDto);
         }
-        public User? GetById(int userId)
+        public User? GetByEmail(string userEmail)
         {
-            return _context.Users.SingleOrDefault(u => u.Id == userId);
+            return _context.Users.SingleOrDefault(u => u.Email == userEmail);
         }
         
-        public void DeleteUser(UserDto userToDeleteDto) 
+        public void DeleteUser(User userToDeleteDto) 
         {
             if (userToDeleteDto == null) 
             {

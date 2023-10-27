@@ -11,7 +11,7 @@ namespace e_commerce_API.Models
 
         public Client Client { get; set; }
 
-        public int ClientId { get; set; }
+        public string ClientEmail { get; set; }
 
         public OrderState State { get; set; } = OrderState.pending;
 

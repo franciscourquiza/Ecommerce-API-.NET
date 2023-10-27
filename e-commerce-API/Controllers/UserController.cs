@@ -34,13 +34,13 @@ namespace e_commerce_API.Controllers
 
             return CreatedAtRoute(nameof(CreateUser), userEntity);
         }
-        [HttpDelete("userId")]
-        public async Task<IActionResult> DeleteUser(int userId) 
+        [HttpDelete("{userEmail}")]
+        public async Task<IActionResult> DeleteUser(string userEmail) 
         {
-            var userEntityToDelete = _userService.GetById(userId);
+            var userEntityToDelete = _userService.GetByEmail(userEmail);
             if (userEntityToDelete == null) 
             {
-                return BadRequest("Id inexistente");
+                return BadRequest("Email inexistente");
             }
 
             _userService.DeleteUser(userEntityToDelete);

@@ -11,15 +11,21 @@ namespace e_commerce_API.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public float Price { get; set; }
+        [Required]
+        public float Price { get; set; } = 0;
 
-        public int Stock { get; set; }
+        public int Stock { get; set; } = 0;
 
+        [Required]
         public string Brand { get; set; }
 
-        public SizeClothes sizeClothe { get; set; }
+        [Required]
+        public SizeClothes SizeClothe { get; set; }
 
-        public StyleClothes styleClothe { get; set; }
+        public StyleClothes StyleClothe { get; set; }
+
+        [Required]
+        public TypeClothes TypeClothes { get; set; }
 
     }
 }
