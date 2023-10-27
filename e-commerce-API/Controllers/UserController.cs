@@ -23,7 +23,11 @@ namespace e_commerce_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(UserDto userForCreation) 
         {
-            var userEntity = _mapper.Map<UserDto>(userForCreation);
+            UserDto? userEntity = _mapper.Map<UserDto>(userForCreation);
+            if (userEntity == null) 
+            {
+                return BadRequest();
+            }
             _userService.AddUser(userEntity);
 
             await _userService.SaveChangesAsync();

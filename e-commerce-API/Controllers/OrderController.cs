@@ -13,16 +13,23 @@ namespace e_commerce_API.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-        public OrderController(IOrderService orderService, IMapper mapper) 
+        public OrderController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
             _mapper = mapper;
         }
         [HttpPost]
-        public Task<IActionResult> CreateOrder(OrderDto orderDto) 
+        public async Task<IActionResult> CreateOrder(OrderDto orderForCreation) 
         {
-            var orderEntity = _mapper.Map<Order>(orderDto);
-            _orderService.CreateOrder(orderDto);
+            OrderDto? orderEntity = _mapper.Map<OrderDto>(orderForCreation);
+            if (orderEntity == null) 
+            {
+                return BadRequest();
+            }
+            _orderService.CreateOrder(orderEntity);
+
+            await _orderService.SaveChangesAsync();
+            return CreatedAtRoute(nameof(CreateOrder), orderEntity);
         }
     }
 }
