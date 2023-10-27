@@ -1,6 +1,8 @@
 ﻿namespace e_commerce_API.Data.Enum
 {
-    public class OrderState
+    public enum OrderState
     {
+        pending,
+        delivered
     }
 }
