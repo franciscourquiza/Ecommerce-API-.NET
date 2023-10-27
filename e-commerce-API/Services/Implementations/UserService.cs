@@ -44,7 +44,7 @@ namespace e_commerce_API.Services.Implementations
             return _context.Users.SingleOrDefault(u => u.Email == userEmail);
         }
         
-        public void DeleteUser(UserDto userToDeleteDto) 
+        public void DeleteUser(User userToDeleteDto) 
         {
             if (userToDeleteDto == null) 
             {
