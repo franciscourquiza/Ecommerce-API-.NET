@@ -10,11 +10,11 @@ namespace e_commerce_API.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [ForeignKey("ClientId")]
+        [ForeignKey("ClientEmail")]
+        public string ClientEmail { get; set; }
 
         public Client Client { get; set; }
 
-        public int ClientId { get; set; }
 
         public OrderState State { get; set; } = OrderState.pending;
 

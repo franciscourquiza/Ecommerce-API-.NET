@@ -21,10 +21,10 @@ namespace e_commerce_API.Services.Implementations
         {
             return await _context.Clients.ToListAsync();
         }
-        public async Task<Client?> GetShoppingHistoryAsync(int userId, Order orderHistory) 
+        public async Task<Client?> GetShoppingHistoryAsync(string userEmail, Order orderHistory)
         {
             return await _context.Clients
-                .Where(h => h.Id == userId)
+                .Where(h => h.Email == userEmail)
                 .FirstOrDefaultAsync(h => h.Orders == orderHistory);
         }
     }
