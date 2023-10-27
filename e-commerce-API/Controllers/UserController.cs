@@ -2,8 +2,10 @@
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using e_commerce_API.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using e_commerce_API.Models;
 
 namespace e_commerce_API.Controllers
 {
@@ -19,24 +21,25 @@ namespace e_commerce_API.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser(UserForCreation userForCreation) 
+        public async Task<IActionResult> CreateUser(UserDto userForCreation) 
         {
             var userEntity = _mapper.Map<User>(userForCreation);
-            _userService.CreateUser(userEntity);
+            _userService.AddUser(userEntity);
 
             await _userService.SaveChangesAsync();
-            return Ok(userEntity);
+
+            return CreatedAtRoute(nameof(CreateUser), userEntity);
         }
-        [HttpDelete("Id")]
+        [HttpDelete("userId")]
         public async Task<IActionResult> DeleteUser(int userId) 
         {
-            var userDelete = _userService.GetById(userId);
-            if (userDelete != null) 
+            var userEntityToDelete = _userService.GetById(userId);
+            if (userEntityToDelete == null) 
             {
                 return BadRequest("Id inexistente");
             }
 
-            _userService.DeleteUser(userDelete);
+            _userService.DeleteUser(userEntityToDelete);
             await _userService.SaveChangesAsync();
 
             return NoContent();

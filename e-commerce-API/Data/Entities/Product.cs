@@ -1,4 +1,5 @@
-﻿using e_commerce_API.Data.Enum.Product;
+﻿using e_commerce_API.Data.Enum;
+using e_commerce_API.Data.Enum.Product;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,14 +17,9 @@ namespace e_commerce_API.Data.Entities
 
         public string Brand { get; set; }
 
-        public SizeClothes SizeClothes { get; set; }
-        
-        public StyleClothes
+        public SizeClothes sizeClothe { get; set; }
 
-
-
-        public enum sizeClothing { get; set; }
-
+        public StyleClothes styleClothe { get; set; }
 
     }
 }

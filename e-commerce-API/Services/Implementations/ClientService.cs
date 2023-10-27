@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using e_commerce_API.Context;
 using e_commerce_API.Data.Entities;
+using e_commerce_API.Data.Enum;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_API.Services.Implementations
@@ -15,10 +17,15 @@ namespace e_commerce_API.Services.Implementations
             _context = context;
             _mapper = mapper;
         }
-
         public async Task<IEnumerable<Client>> GetClientsAsync() 
         {
             return await _context.Clients.ToListAsync();
+        }
+        public async Task<Client?> GetShoppingHistoryAsync(int userId, Order orderHistory) 
+        {
+            return await _context.Clients
+                .Where(h => h.Id == userId)
+                .FirstOrDefaultAsync(h => h.Orders == orderHistory);
         }
     }
 }

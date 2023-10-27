@@ -6,10 +6,10 @@ namespace e_commerce_API.Services.Interfaces
 {
     public interface IUserService
     {
-        public User? ValidateUser(AuthenticationRequestBody authenticationRequestBody);
         public User? GetById(int userId);
         Task<bool> SaveChangesAsync();
-        void CreateUser(User userToCreate);
-        void DeleteUser(User userToDelete);
+        void DeleteUser(User userEntityToDelete);
+        Tuple<bool, User?> ValidateUser(string? email, string? password);
+        void AddUser(User userEntity);
     }
 }

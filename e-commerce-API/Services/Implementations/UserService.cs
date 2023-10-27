@@ -6,43 +6,51 @@ using e_commerce_API.Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using e_commerce_API.Data.Entities;
 using System.Runtime.InteropServices;
+using SQLitePCL;
 
 namespace e_commerce_API.Services.Implementations
 {
+
     public class UserService : IUserService
     {
-        private EcommerceContext _context;
-        private readonly IMapper _mapper;
-        public UserService(EcommerceContext context, IMapper mapper)
+        
+        private readonly EcommerceContext _context;
+        public UserService(EcommerceContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public User? ValidateUser(AuthenticationRequestBody authenticationRequestBody)
+        public Tuple<bool,User?> ValidateUser(string email, string password)
         {
-            return _context.Users.FirstOrDefault(p => p.Email == authenticationRequestBody.Email && p.Password == authenticationRequestBody.Password);
+            User? userForLogin = _context.Users.SingleOrDefault(u => u.Email == email);
+            if (userForLogin != null) 
+            { 
+                if (userForLogin.Password == password)
+                    return new Tuple<bool,User?>(true, userForLogin);
+                return new Tuple<bool,User?>(false, null);
+            }
+            return new Tuple<bool, User?>(false, null);   
         }
-
+        public void AddUser(UserDto newUserDto)
+        {
+            if (newUserDto == null) 
+            {
+                throw new ArgumentNullException(nameof(newUserDto));
+            }
+            _context.Add(newUserDto);
+        }
         public User? GetById(int userId)
         {
             return _context.Users.SingleOrDefault(u => u.Id == userId);
         }
-        public void CreateUser(User userToCreate) 
+        
+        public void DeleteUser(UserDto userToDeleteDto) 
         {
-            if (userToCreate == null) 
-            { 
-                throw new ArgumentNullException(nameof(userToCreate));
-            }
-            _context.Users.Add(_mapper.Map<User>(userToCreate));
-        }
-        public void DeleteUser(User userToDelete) 
-        {
-            if (userToDelete != null) 
+            if (userToDeleteDto == null) 
             {
-                throw new ArgumentNullException(nameof(userToDelete));
+                throw new ArgumentNullException(nameof(userToDeleteDto));
             }
-            _context.Users.Remove(userToDelete);
+            _context.Remove(userToDeleteDto);
         }
         public async Task<bool> SaveChangesAsync()
         {
