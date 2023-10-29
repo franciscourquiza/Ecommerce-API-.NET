@@ -11,7 +11,7 @@ using e_commerce_API.Data.Entities;
 namespace e_commerce_API.Controllers
 
 {
-    [Route("api/[auth]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace e_commerce_API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost]
         public IActionResult Login([FromBody] AuthenticationRequestBody authenticationRequestBody)
         {
             Tuple<bool, User?> validationResponse = _userService.ValidateUser(authenticationRequestBody.Email, authenticationRequestBody.Password);
