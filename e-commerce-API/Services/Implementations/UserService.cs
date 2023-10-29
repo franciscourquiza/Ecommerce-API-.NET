@@ -31,14 +31,7 @@ namespace e_commerce_API.Services.Implementations
             }
             return new Tuple<bool, User?>(false, null);   
         }
-        public void AddUser(UserDto newUserDto)
-        {
-            if (newUserDto == null) 
-            {
-                throw new ArgumentNullException(nameof(newUserDto));
-            }
-            _context.Add(newUserDto);
-        }
+
         public User? GetByEmail(string userEmail)
         {
             return _context.Users.SingleOrDefault(u => u.Email == userEmail);
