@@ -8,6 +8,7 @@ namespace e_commerce_API.Data.Entities
     {
         [Key]
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }

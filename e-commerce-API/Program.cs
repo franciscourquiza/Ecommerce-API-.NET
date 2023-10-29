@@ -1,4 +1,6 @@
+using AutoMapper;
 using e_commerce_API.Context;
+using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -51,7 +53,9 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped(x => new EcommerceContext(connectionString));
-builder.Services.AddScoped<IUserService, IUserService>();
+builder.Services.AddScoped<IMapper, Mapper>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 
@@ -64,7 +68,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); // logueo
+app.UseAuthentication(); 
 
 app.UseAuthorization();
 
