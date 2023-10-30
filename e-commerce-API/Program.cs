@@ -53,7 +53,6 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped(x => new EcommerceContext(connectionString));
-builder.Services.AddScoped<IMapper, Mapper>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 
