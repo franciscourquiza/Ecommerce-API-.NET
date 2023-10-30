@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using e_commerce_API.Data.Entities;
+using e_commerce_API.Models;
 using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -31,7 +32,7 @@ namespace e_commerce_API.Controllers
             //return Forbid();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateClient(Client clientForCreation)
+        public async Task<IActionResult> CreateClient(ClientDto clientForCreation)
         {
             Client? userEntity = _mapper.Map<Client>(clientForCreation);
             if (_userService.GetByEmail(userEntity.Email) != null)
@@ -46,7 +47,8 @@ namespace e_commerce_API.Controllers
 
             await _clientService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(CreateClient), userEntity);
+            return CreatedAtRoute(nameof(CreateClient), new { email = userEntity.Email }, userEntity);
+
         }
         //[HttpPost]
         //public IActionResult<OrderDto>
