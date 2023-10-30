@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
 using e_commerce_API.Models;
+using e_commerce_API.Services.Implementations;
 
 namespace e_commerce_API.Controllers
 {
@@ -20,20 +21,24 @@ namespace e_commerce_API.Controllers
             _userService = userService;
             _mapper = mapper;
         }
-        
+
         [HttpDelete("{userEmail}")]
-        public async Task<IActionResult> DeleteUser(string userEmail) 
+        public async Task<IActionResult> DeleteUser(string userEmail)
         {
-            var userEntityToDelete = _userService.GetByEmail(userEmail);
-            if (userEntityToDelete == null) 
-            {
-                return BadRequest("Email inexistente");
-            }
+            //string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            //if (role == "SuperAdmin" ){
+                var userEntityToDelete = _userService.GetByEmail(userEmail);
+                if (userEntityToDelete == null)
+                {
+                    return BadRequest("Email inexistente");
+                }
 
-            _userService.DeleteUser(userEntityToDelete);
-            await _userService.SaveChangesAsync();
+                _userService.DeleteUser(userEntityToDelete);
+                await _userService.SaveChangesAsync();
 
-            return NoContent();
+                return NoContent();
+            //}
+            //return Forbid();
         }
     }
 }

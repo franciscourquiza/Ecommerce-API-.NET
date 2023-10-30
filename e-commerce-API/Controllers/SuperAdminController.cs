@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using e_commerce_API.Data.Entities;
 using e_commerce_API.Models;
+using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,14 @@ namespace e_commerce_API.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        public IActionResult GetSuperAdmins()
+        {
+            //string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            //if (role == "SuperAdmin" )
+                return Ok(_superAdminService.GetSuperAdmins());
+            //return Forbid();
+        }
         [HttpPost]
         public async Task<IActionResult> CreateSuperAdmin(SuperAdminDto superAdminForCreation)
         {

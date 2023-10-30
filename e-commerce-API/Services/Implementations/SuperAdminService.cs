@@ -12,6 +12,11 @@ namespace e_commerce_API.Services.Implementations
         {
             _context = context;
         }
+
+        public List<SuperAdmin> GetSuperAdmins()
+        {
+            return _context.SuperAdmins.ToList();
+        }
         public void AddSuperAdmin(SuperAdmin newSuperAdmin)
         {
             if (newSuperAdmin == null)

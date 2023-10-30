@@ -14,6 +14,11 @@ namespace e_commerce_API.Services.Implementations
         {
             _context = context;
         }
+
+        public List<Admin> GetAdmins()
+        {
+            return _context.Admins.ToList();
+        }
         public void AddAdmin(Admin newAdmin)
         {
             if (newAdmin == null)
