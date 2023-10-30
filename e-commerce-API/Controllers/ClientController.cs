@@ -47,7 +47,8 @@ namespace e_commerce_API.Controllers
 
             await _clientService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(CreateClient), userEntity);
+            return CreatedAtRoute(nameof(CreateClient), new { email = userEntity.Email }, userEntity);
+
         }
         //[HttpPost]
         //public IActionResult<OrderDto>

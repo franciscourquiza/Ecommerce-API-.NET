@@ -11,11 +11,9 @@ namespace e_commerce_API.Services.Implementations
     public class ClientService : IClientService
     {
         private EcommerceContext _context;
-        private readonly IMapper _mapper;
         public ClientService(EcommerceContext context, IMapper mapper) 
         {
             _context = context;
-            _mapper = mapper;
         }
         public List<Client> GetClients() 
         {
