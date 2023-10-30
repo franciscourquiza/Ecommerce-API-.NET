@@ -11,7 +11,7 @@ namespace e_commerce_API.Services.Implementations
     public class ClientService : IClientService
     {
         private EcommerceContext _context;
-        public ClientService(EcommerceContext context, IMapper mapper) 
+        public ClientService(EcommerceContext context) 
         {
             _context = context;
         }
@@ -36,7 +36,7 @@ namespace e_commerce_API.Services.Implementations
         }
         public async Task<bool> SaveChangesAsync()
         {
-            return (await _context.SaveChangesAsync() > 0); //devuelve true si 1 o mas entidades fueron modificadas
+            return (await _context.SaveChangesAsync() > 0); 
         }
     }
 }

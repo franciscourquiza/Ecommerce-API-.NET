@@ -56,6 +56,7 @@ builder.Services.AddScoped(x => new EcommerceContext(connectionString));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<ISuperAdminService, SuperAdminService>();
 
 var app = builder.Build();
 

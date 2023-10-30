@@ -1,12 +1,6 @@
 ﻿using e_commerce_API.Services.Interfaces;
-using AutoMapper;
 using e_commerce_API.Context;
-using e_commerce_API.Models;
-using e_commerce_API.Data;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using e_commerce_API.Data.Entities;
-using System.Runtime.InteropServices;
-using SQLitePCL;
 
 namespace e_commerce_API.Services.Implementations
 {
@@ -47,7 +41,7 @@ namespace e_commerce_API.Services.Implementations
         }
         public async Task<bool> SaveChangesAsync()
         {
-            return(await _context.SaveChangesAsync() > 0); //devuelve true si 1 o mas entidades fueron modificadas
+            return(await _context.SaveChangesAsync() > 0); 
         }
     }
 }

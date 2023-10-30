@@ -13,7 +13,6 @@ namespace e_commerce_API.Services.Implementations
         public AdminService(EcommerceContext context)
         {
             _context = context;
-
         }
         public void AddAdmin(Admin newAdmin)
         {
