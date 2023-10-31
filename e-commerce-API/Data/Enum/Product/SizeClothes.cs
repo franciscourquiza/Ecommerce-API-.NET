@@ -1,6 +1,6 @@
 ﻿namespace e_commerce_API.Data.Enum.Product
 {
-    public enum SizeClothes
+    public enum SizeClothes 
     {
         XS,
         S,

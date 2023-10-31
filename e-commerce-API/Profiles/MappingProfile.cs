@@ -26,5 +26,12 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
             .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
             .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+        CreateMap<ProductDto, Product>()
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Stock))
+            .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Brand))
+            .ForMember(dest => dest.SizeClothes, opt => opt.MapFrom(src => src.SizeClothes))
+            .ForMember(dest => dest.StyleClothes, opt => opt.MapFrom(src => src.StyleClothes))
+            .ForMember(dest => dest.TypeClothes, opt => opt.MapFrom(src => src.TypeClothes));
     }
 }

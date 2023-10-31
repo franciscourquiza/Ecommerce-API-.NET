@@ -20,12 +20,14 @@ namespace e_commerce_API.Data.Entities
         public string Brand { get; set; }
 
         [Required]
-        public SizeClothes SizeClothe { get; set; }
+        public SizeClothes SizeClothes { get; set; }
 
-        public StyleClothes StyleClothe { get; set; }
+        public StyleClothes StyleClothes { get; set; }
 
         [Required]
         public TypeClothes TypeClothes { get; set; }
+
+        public bool IsDeleted { get; set; }
 
     }
 }

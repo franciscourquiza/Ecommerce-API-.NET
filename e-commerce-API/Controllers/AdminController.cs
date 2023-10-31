@@ -21,7 +21,14 @@ namespace e_commerce_API.Controllers
             _adminService = adminService;
             _mapper = mapper;
         }
-        [HttpPost]
+        [HttpGet]
+        public IActionResult GetAdmins()
+        {
+            //string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            //if (role == "SuperAdmin" )
+            return Ok(_adminService.GetAdmins());
+            //return Forbid();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateAdmin(AdminDto adminForCreation)
