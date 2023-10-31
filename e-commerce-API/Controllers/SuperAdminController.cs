@@ -30,6 +30,16 @@ namespace e_commerce_API.Controllers
                 return Ok(_superAdminService.GetSuperAdmins());
             //return Forbid();
         }
+        [HttpGet("{email}", Name = nameof(GetSuperAdminByEmail))]
+        public IActionResult GetSuperAdminByEmail(string email)
+        {
+            var superAdmin = _userService.GetByEmail(email);
+            if (superAdmin == null)
+            {
+                return NotFound();
+            }
+            return Ok(superAdmin);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateSuperAdmin(SuperAdminDto superAdminForCreation)
         {
@@ -46,7 +56,7 @@ namespace e_commerce_API.Controllers
 
             await _superAdminService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(CreateSuperAdmin), new { email = userEntity.Email }, userEntity);
+            return CreatedAtRoute(nameof(GetSuperAdminByEmail), new { email = userEntity.Email }, userEntity);
 
         }
     }
