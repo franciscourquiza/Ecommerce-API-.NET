@@ -31,6 +31,16 @@ namespace e_commerce_API.Controllers
                 return Ok(_clientService.GetClients());
             //return Forbid();
         }
+        [HttpGet("{email}", Name = nameof(GetClientByEmail))]
+        public IActionResult GetClientByEmail(string email)
+        {
+            var client = _userService.GetByEmail(email);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return Ok(client);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateClient(ClientDto clientForCreation)
         {
@@ -47,7 +57,7 @@ namespace e_commerce_API.Controllers
 
             await _clientService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(CreateClient), new { email = userEntity.Email }, userEntity);
+            return CreatedAtRoute(nameof(GetClientByEmail), new { email = userEntity.Email }, userEntity);
 
         }
         //[HttpPost]

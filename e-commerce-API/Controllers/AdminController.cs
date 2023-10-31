@@ -29,7 +29,16 @@ namespace e_commerce_API.Controllers
             return Ok(_adminService.GetAdmins());
             //return Forbid();
         }
-
+        [HttpGet("{email}", Name = nameof(GetAdminByEmail))]
+        public IActionResult GetAdminByEmail(string email)
+        {
+            var admin = _userService.GetByEmail(email);
+            if (admin == null)
+            {
+                return NotFound();
+            }
+            return Ok(admin);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateAdmin(AdminDto adminForCreation)
         {
@@ -46,7 +55,7 @@ namespace e_commerce_API.Controllers
 
             await _adminService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(CreateAdmin), new { email = userEntity.Email }, userEntity);
+            return CreatedAtRoute(nameof(GetAdminByEmail), new { email = userEntity.Email }, userEntity);
 
         }
     }
