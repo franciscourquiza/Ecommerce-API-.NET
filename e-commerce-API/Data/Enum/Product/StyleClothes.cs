@@ -5,6 +5,5 @@
         urban,
         sport,
         formal
-
     }
 }

@@ -6,6 +6,5 @@
         shorts,
         shirt,
         jacket
-        
     }
 }
