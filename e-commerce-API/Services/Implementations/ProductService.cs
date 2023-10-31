@@ -30,6 +30,11 @@ namespace e_commerce_API.Services.Implementations
         {
             return _context.Products.FirstOrDefault(p => p.Id == id && !p.IsDeleted);
         }
+
+        public void UpdateProduct(Product productUpdated)
+        {
+            _context.Products.Update(productUpdated);
+        }
         
         public void DeleteProduct(Product productToDelete) 
         {
