@@ -21,15 +21,37 @@ namespace e_commerce_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderDto orderForCreation) 
         {
-            OrderDto? orderEntity = _mapper.Map<OrderDto>(orderForCreation);
-            if (orderEntity == null) 
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Client") 
             {
-                return BadRequest();
-            }
-            _orderService.CreateOrder(orderEntity);
+                Order? orderEntity = _mapper.Map<Order>(orderForCreation);
+                if (orderEntity == null)
+                {
+                    return BadRequest();
+                }
+                _orderService.AddOrder(orderEntity);
 
-            await _orderService.SaveChangesAsync();
-            return CreatedAtRoute(nameof(CreateOrder), orderEntity);
+                await _orderService.SaveChangesAsync();
+
+                return CreatedAtRoute(nameof(CreateOrder), orderEntity);
+            }
+            return Forbid();
+        }
+        [HttpGet]
+        public IActionResult GetOrders() 
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Admin")
+                return Ok(_orderService.GetOrders());
+            return Forbid();
+        }
+        [HttpGet]
+        public IActionResult GetPendingOrders() 
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Admin")
+                return Ok(_orderService.GetPendingOrders());
+            return Forbid();
         }
     }
 }

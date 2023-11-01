@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using e_commerce_API.Context;
 using e_commerce_API.Data.Entities;
+using e_commerce_API.Data.Enum;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
 
@@ -19,10 +20,21 @@ namespace e_commerce_API.Services.Implementations
             _orderService = orderService;
             _context = context;
         }
-        public void CreateOrder(OrderDto orderDto) 
+        public void AddOrder(Order newOrder) 
         { 
-            if (orderDto == null) throw new ArgumentNullException(nameof(orderDto));
-            _context.Orders.Add(_mapper.Map<Order>(orderDto));
+            if (newOrder == null) 
+            {
+                throw new ArgumentNullException(nameof(newOrder));
+            }
+            _context.Add(newOrder);
+        }
+        public List<Order> GetOrders() 
+        {
+            return _context.Orders.ToList();
+        }
+        public List<Order> GetPendingOrders() 
+        {
+            return _context.Orders.Where(o => o.State == OrderState.pending).ToList();
         }
         public async Task<bool> SaveChangesAsync()
         {
