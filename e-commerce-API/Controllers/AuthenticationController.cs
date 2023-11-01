@@ -39,7 +39,7 @@ namespace e_commerce_API.Controllers
             var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);
 
             var claimsForToken = new List<Claim>();
-            claimsForToken.Add(new Claim("sub", validationResponse.Item2.Email.ToString()));
+            claimsForToken.Add(new Claim("sub", validationResponse.Item2.Email));
             claimsForToken.Add(new Claim("given_name", validationResponse.Item2.Name));
             claimsForToken.Add(new Claim("role", validationResponse.Item2.UserType)); // cambiar mas adelante
 

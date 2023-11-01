@@ -15,7 +15,6 @@ namespace e_commerce_API.Data.Entities
 
         public Client Client { get; set; }
 
-
         public OrderState State { get; set; } = OrderState.pending;
 
         public DateTime OrderDate { get; private set; } = DateTime.Now.ToUniversalTime();
