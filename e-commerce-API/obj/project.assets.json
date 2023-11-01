@@ -2580,19 +2580,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cvpru\\.nuget\\packages\\": {}
+    "C:\\Users\\Tomas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\e-commerce-API.csproj",
+      "projectUniqueName": "E:\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
       "projectName": "e-commerce-API",
-      "projectPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\e-commerce-API.csproj",
-      "packagesPath": "C:\\Users\\cvpru\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\obj\\",
+      "projectPath": "E:\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "packagesPath": "C:\\Users\\Tomas\\.nuget\\packages\\",
+      "outputPath": "E:\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cvpru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

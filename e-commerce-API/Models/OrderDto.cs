@@ -7,6 +7,7 @@ namespace e_commerce_API.Models
 {
     public class OrderDto
     { 
+
         public int Id { get; set; }
 
         public Client Client { get; set; }

@@ -45,7 +45,7 @@ namespace e_commerce_API.Controllers
                 return Ok(_orderService.GetOrders());
             return Forbid();
         }
-        [HttpGet]
+        [HttpGet("GetPendingOrders")]
         public IActionResult GetPendingOrders() 
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
