@@ -7,26 +7,26 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Implementations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace e_commerce_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
         }
 
         [HttpDelete("{userEmail}")]
         public async Task<IActionResult> DeleteUser(string userEmail)
         {
-            //string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
-            //if (role == "SuperAdmin" ){
+            string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            if (role == "SuperAdmin" ){
                 var userEntityToDelete = _userService.GetByEmail(userEmail);
                 if (userEntityToDelete == null)
                 {
@@ -37,8 +37,8 @@ namespace e_commerce_API.Controllers
                 await _userService.SaveChangesAsync();
 
                 return NoContent();
-            //}
-            //return Forbid();
+            }
+            return Forbid();
         }
     }
 }

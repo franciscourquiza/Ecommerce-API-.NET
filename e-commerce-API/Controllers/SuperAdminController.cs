@@ -25,10 +25,10 @@ namespace e_commerce_API.Controllers
         [HttpGet]
         public IActionResult GetSuperAdmins()
         {
-            //string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
-            //if (role == "SuperAdmin" )
+            string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            if (role == "SuperAdmin" )
                 return Ok(_superAdminService.GetSuperAdmins());
-            //return Forbid();
+            return Forbid();
         }
         [HttpGet("{email}", Name = nameof(GetSuperAdminByEmail))]
         public IActionResult GetSuperAdminByEmail(string email)
