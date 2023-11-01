@@ -2580,19 +2580,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\josed\\.nuget\\packages\\": {}
+    "C:\\Users\\cvpru\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "projectUniqueName": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\e-commerce-API.csproj",
       "projectName": "e-commerce-API",
-      "projectPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
-      "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
+      "projectPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\e-commerce-API.csproj",
+      "packagesPath": "C:\\Users\\cvpru\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EccommerceApi2\\e-commerce-API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cvpru\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2698,7 +2698,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
