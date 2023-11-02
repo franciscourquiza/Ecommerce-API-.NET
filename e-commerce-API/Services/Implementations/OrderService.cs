@@ -4,6 +4,7 @@ using e_commerce_API.Data.Entities;
 using e_commerce_API.Data.Enum;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_API.Services.Implementations
 {
@@ -29,8 +30,7 @@ namespace e_commerce_API.Services.Implementations
             Client client = _context.Clients.FirstOrDefault(c => c.Email == emailClient);
             Order order = new Order
             {
-                ClientEmail = emailClient,
-                Client = client, 
+                ClientEmail = emailClient, 
                 OrderPrice = totalPrice,
                 OrderedProducts = productsOrder
             };
@@ -40,7 +40,14 @@ namespace e_commerce_API.Services.Implementations
         }
         public Order GetOrderById(int id)
         {
-            return _context.Orders.SingleOrDefault(p => p.Id == id);
+            return _context.Orders
+                .Include( a=> a.OrderedProducts)
+                .SingleOrDefault(p => p.Id == id);
+        }
+
+        public List<Order?> GetShoppingHistory(string userEmail)
+        {
+            return _context.Orders.Where(h => h.ClientEmail == userEmail).Include(a => a.OrderedProducts).ToList();
         }
         public List<Order> GetOrders() 
         {

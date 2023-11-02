@@ -28,7 +28,7 @@ namespace e_commerce_API.Controllers
 
         public IActionResult GetClients() 
         {
-            string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "Admin" )
                 return Ok(_clientService.GetClients());
             return Forbid();

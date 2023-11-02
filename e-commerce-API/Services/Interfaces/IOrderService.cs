@@ -10,6 +10,8 @@ namespace e_commerce_API.Services.Interfaces
         Order GetOrderById(int id);
         List<Order> GetOrders();
         List<Order> GetPendingOrders();
+
+        List<Order?> GetShoppingHistory(string userEmail);
         Task<bool> SaveChangesAsync();
     }
 }

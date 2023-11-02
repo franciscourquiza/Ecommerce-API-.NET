@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using e_commerce_API.Data.Entities;
 using e_commerce_API.Models;
-using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +50,19 @@ namespace e_commerce_API.Controllers
             }
 
             return Ok(order);
+        }
+        [HttpGet("GetShoppingHistory")]
+        [Authorize]
+        public IActionResult GetShoppingHistory()
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if(role == "Client")
+            {
+                string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
+                return Ok(_orderService.GetShoppingHistory(emailClient));
+            }
+            return Forbid();
+
         }
 
         [HttpGet("GetAllOrders")]

@@ -31,12 +31,6 @@ namespace e_commerce_API.Services.Implementations
             }
             _context.Add(newClient);
         }
-        public async Task<Client?> GetShoppingHistoryAsync(string userEmail, Order orderHistory)
-        {
-            return await _context.Clients
-                .Where(h => h.Email == userEmail)
-                .FirstOrDefaultAsync(h => h.Orders == orderHistory);
-        }
 
         public void EditClient(EditClientDto client, string emailClient) 
         {

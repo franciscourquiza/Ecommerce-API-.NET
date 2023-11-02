@@ -8,7 +8,6 @@ namespace e_commerce_API.Data.Entities
 
         public int Dni { get; set; }
 
-        [JsonIgnore]
         public ICollection<Order> Orders { get; set; } = new List<Order>();
 
     }
