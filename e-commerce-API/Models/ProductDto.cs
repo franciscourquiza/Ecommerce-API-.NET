@@ -6,7 +6,7 @@ namespace e_commerce_API.Models
 {
     public class ProductDto
     {
-        
+
         public float Price { get; set; } = 0;
 
         public int Stock { get; set; } = 0;
