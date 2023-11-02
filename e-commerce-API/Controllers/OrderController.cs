@@ -3,12 +3,14 @@ using e_commerce_API.Data.Entities;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_commerce_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -19,25 +21,39 @@ namespace e_commerce_API.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(OrderDto orderForCreation) 
+        public async Task<IActionResult> CreateOrder(OrderDto order) 
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Client") 
             {
-                Order? orderEntity = _mapper.Map<Order>(orderForCreation);
-                if (orderEntity == null)
+                if (order == null)
                 {
                     return BadRequest();
                 }
-                _orderService.AddOrder(orderEntity);
+                string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
+                Order createdOrder= _orderService.AddOrder(order, emailClient);
 
                 await _orderService.SaveChangesAsync();
+                return Ok();
 
-                return CreatedAtRoute(nameof(CreateOrder), orderEntity);
+
             }
             return Forbid();
         }
-        [HttpGet]
+        [HttpGet("{id}", Name = "GetOrderById")]
+        public IActionResult GetOrderById(int id)
+        {
+            var order = _orderService.GetOrderById(id); 
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(order);
+        }
+
+        [HttpGet("GetAllOrders")]
         public IActionResult GetOrders() 
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
@@ -45,7 +61,7 @@ namespace e_commerce_API.Controllers
                 return Ok(_orderService.GetOrders());
             return Forbid();
         }
-        [HttpGet]
+        [HttpGet("GetPendingOrders")]
         public IActionResult GetPendingOrders() 
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
