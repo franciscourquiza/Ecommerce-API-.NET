@@ -13,8 +13,6 @@ namespace e_commerce_API.Data.Entities
         [ForeignKey("ClientEmail")]
         public string ClientEmail { get; set; }
 
-        public Client Client { get; set; }
-
         public OrderState State { get; set; } = OrderState.pending;
 
         public DateTime OrderDate { get; private set; } = DateTime.Now.ToUniversalTime();

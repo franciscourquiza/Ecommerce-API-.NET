@@ -7,7 +7,6 @@ namespace e_commerce_API.Services.Interfaces
     {
         List<Client> GetClients();
         void AddClient(Client clientForCreation);
-
         void EditClient(EditClientDto clientEdited,string emailClient);
         Task<bool> SaveChangesAsync();
 

@@ -10,7 +10,7 @@ namespace e_commerce_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;
@@ -24,10 +24,11 @@ namespace e_commerce_API.Controllers
         }
 
         [HttpGet]
-        
+        [Authorize]
+
         public IActionResult GetClients() 
         {
-            string role =User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
+            string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "Admin" )
                 return Ok(_clientService.GetClients());
             return Forbid();
@@ -62,6 +63,7 @@ namespace e_commerce_API.Controllers
 
         }
         [HttpPut]
+        [Authorize]
 
         public async Task<IActionResult> EditClient(EditClientDto clientEdited)
         {
