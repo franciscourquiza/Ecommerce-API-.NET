@@ -26,6 +26,10 @@ namespace e_commerce_API.Services.Implementations
                 throw new ArgumentNullException(nameof(newOrder));
             }
             List<Product> productsOrder = _context.Products.Where(p => newOrder.OrderedProducts.Contains(p.Id)).ToList();
+            foreach (var product in productsOrder)
+            {
+                product.Stock -= 1;
+            }
             float totalPrice = productsOrder.Sum(p => p.Price);
             Client client = _context.Clients.FirstOrDefault(c => c.Email == emailClient);
             Order order = new Order
@@ -51,11 +55,11 @@ namespace e_commerce_API.Services.Implementations
         }
         public List<Order> GetOrders() 
         {
-            return _context.Orders.ToList();
+            return _context.Orders.Include((p=>p.OrderedProducts)).ToList();
         }
         public List<Order> GetPendingOrders() 
         {
-            return _context.Orders.Where(o => o.State == OrderState.pending).ToList();
+            return _context.Orders.Where(o => o.State == OrderState.pending).Include((p => p.OrderedProducts)).ToList();
         }
         public async Task<bool> SaveChangesAsync()
         {
