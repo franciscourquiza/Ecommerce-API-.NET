@@ -25,24 +25,25 @@ namespace e_commerce_API.Controllers
 
         [HttpGet]
         [Authorize]
-
         public IActionResult GetClients() 
         {
             string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "Admin" )
                 return Ok(_clientService.GetClients());
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
+
         [HttpGet("{email}", Name = nameof(GetClientByEmail))]
         public IActionResult GetClientByEmail(string email)
         {
             var client = _userService.GetByEmail(email);
             if (client == null)
             {
-                return NotFound();
+                return NotFound("Cliente no encontrado");
             }
             return Ok(client);
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateClient(ClientDto clientForCreation)
         {
@@ -62,9 +63,9 @@ namespace e_commerce_API.Controllers
             return CreatedAtRoute(nameof(GetClientByEmail), new { email = userEntity.Email }, userEntity);
 
         }
+
         [HttpPut]
         [Authorize]
-
         public async Task<IActionResult> EditClient(EditClientDto clientEdited)
         {
             string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;

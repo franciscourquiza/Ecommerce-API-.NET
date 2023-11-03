@@ -35,10 +35,9 @@ namespace e_commerce_API.Controllers
 
                 _userService.DeleteUser(userEntityToDelete);
                 await _userService.SaveChangesAsync();
-
                 return NoContent();
             }
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
     }
 }
