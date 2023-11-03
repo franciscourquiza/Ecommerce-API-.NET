@@ -4,6 +4,7 @@ using e_commerce_API.Data.Entities;
 using e_commerce_API.Data.Enum;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_API.Services.Implementations
 {
@@ -12,21 +13,41 @@ namespace e_commerce_API.Services.Implementations
         private readonly IMapper _mapper;
         private readonly EcommerceContext _context;
         private readonly IClientService _clientService;
-        private readonly IOrderService _orderService;
-        public OrderService(IMapper mapper, IClientService clientService, EcommerceContext context, IOrderService orderService)
+        public OrderService(IMapper mapper, IClientService clientService, EcommerceContext context)
         {
             _mapper = mapper;
             _clientService = clientService;
-            _orderService = orderService;
             _context = context;
         }
-        public void AddOrder(Order newOrder) 
+        public Order AddOrder(OrderDto newOrder, string emailClient) 
         { 
             if (newOrder == null) 
             {
                 throw new ArgumentNullException(nameof(newOrder));
             }
-            _context.Add(newOrder);
+            List<Product> productsOrder = _context.Products.Where(p => newOrder.OrderedProducts.Contains(p.Id)).ToList();
+            float totalPrice = productsOrder.Sum(p => p.Price);
+            Client client = _context.Clients.FirstOrDefault(c => c.Email == emailClient);
+            Order order = new Order
+            {
+                ClientEmail = emailClient, 
+                OrderPrice = totalPrice,
+                OrderedProducts = productsOrder
+            };
+            _context.Orders.Add(order);
+            return order;
+
+        }
+        public Order GetOrderById(int id)
+        {
+            return _context.Orders
+                .Include( a=> a.OrderedProducts)
+                .SingleOrDefault(p => p.Id == id);
+        }
+
+        public List<Order?> GetShoppingHistory(string userEmail)
+        {
+            return _context.Orders.Where(h => h.ClientEmail == userEmail).Include(a => a.OrderedProducts).ToList();
         }
         public List<Order> GetOrders() 
         {

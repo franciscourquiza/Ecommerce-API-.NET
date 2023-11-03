@@ -1,11 +1,10 @@
 ﻿using e_commerce_API.Data.Entities;
-using e_commerce_API.Data.Enum;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace e_commerce_API.Models
 {
     public class OrderDto
+<<<<<<< HEAD
     {
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "El campo Id debe ser mayor que 0.")]
@@ -28,6 +27,10 @@ namespace e_commerce_API.Models
 
         public List<Product> OrderedProducts { get; set; } = new List<Product>();
 
+=======
+    { 
+        public List<int> OrderedProducts { get; set; } 
+>>>>>>> 38c1dbe1e712ad1a0cc4fe3b9035e981e389c4f0
 
     }
 }
