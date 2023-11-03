@@ -12,7 +12,6 @@ namespace e_commerce_API.Models
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "El campo debe contener solo letras.")]
         public string LastName { get; set; }
 
-        [Required]
         public int PhoneNumber { get; set; }
 
         [Required]
