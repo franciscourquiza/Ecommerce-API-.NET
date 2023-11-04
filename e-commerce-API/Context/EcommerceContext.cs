@@ -25,9 +25,22 @@ namespace e_commerce_API.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<SaleOrderLine> SaleOrderLines { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
+
+            modelBuilder.Entity<SaleOrderLine>()
+                .HasOne(sol => sol.Product)
+                .WithMany()
+                .HasForeignKey(sol => sol.ProductId);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.SaleOrderLines)
+                .WithOne()
+                .HasForeignKey(sol => sol.SaleOrderId);
+            
+            
             base.OnModelCreating(modelBuilder);
         }
 
