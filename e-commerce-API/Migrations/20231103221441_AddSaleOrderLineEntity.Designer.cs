@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_commerce_API.Context;
 
@@ -10,9 +11,11 @@ using e_commerce_API.Context;
 namespace e_commerce_API.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    partial class EcommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20231103221441_AddSaleOrderLineEntity")]
+    partial class AddSaleOrderLineEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -32,6 +35,9 @@ namespace e_commerce_API.Migrations
 
                     b.Property<float>("OrderPrice")
                         .HasColumnType("REAL");
+
+                    b.Property<int>("SaleOrderLineId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("State")
                         .HasColumnType("INTEGER");

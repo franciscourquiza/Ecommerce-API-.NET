@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_commerce_API.Context;
 
@@ -10,9 +11,11 @@ using e_commerce_API.Context;
 namespace e_commerce_API.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    partial class EcommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20231103173615_UserAndClientTableUpdate")]
+    partial class UserAndClientTableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -38,6 +41,8 @@ namespace e_commerce_API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientEmail");
+
                     b.ToTable("Orders");
                 });
 
@@ -52,6 +57,9 @@ namespace e_commerce_API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("OrderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("Price")
@@ -71,31 +79,9 @@ namespace e_commerce_API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("e_commerce_API.Data.Entities.SaleOrderLine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductQuntity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SaleOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SaleOrderId");
-
-                    b.ToTable("SaleOrderLines");
                 });
 
             modelBuilder.Entity("e_commerce_API.Data.Entities.User", b =>
@@ -168,26 +154,30 @@ namespace e_commerce_API.Migrations
                     b.HasDiscriminator().HasValue("SuperAdmin");
                 });
 
-            modelBuilder.Entity("e_commerce_API.Data.Entities.SaleOrderLine", b =>
+            modelBuilder.Entity("e_commerce_API.Data.Entities.Order", b =>
                 {
-                    b.HasOne("e_commerce_API.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
+                    b.HasOne("e_commerce_API.Data.Entities.Client", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientEmail")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
+            modelBuilder.Entity("e_commerce_API.Data.Entities.Product", b =>
+                {
                     b.HasOne("e_commerce_API.Data.Entities.Order", null)
-                        .WithMany("SaleOrderLines")
-                        .HasForeignKey("SaleOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                        .WithMany("OrderedProducts")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("e_commerce_API.Data.Entities.Order", b =>
                 {
-                    b.Navigation("SaleOrderLines");
+                    b.Navigation("OrderedProducts");
+                });
+
+            modelBuilder.Entity("e_commerce_API.Data.Entities.Client", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

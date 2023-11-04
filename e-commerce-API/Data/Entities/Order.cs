@@ -1,4 +1,5 @@
 ﻿using e_commerce_API.Data.Enum;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,8 +20,6 @@ namespace e_commerce_API.Data.Entities
 
         public float OrderPrice { get; set; }
 
-        public List<Product> OrderedProducts { get; set; } = new List<Product>();
-
-
+        public List<SaleOrderLine> SaleOrderLines { get; set; } = new List<SaleOrderLine>();
     }
 }
