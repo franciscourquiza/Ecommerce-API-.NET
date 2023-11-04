@@ -30,7 +30,7 @@ namespace e_commerce_API.Controllers
                 var userEntityToDelete = _userService.GetByEmail(userEmail);
                 if (userEntityToDelete == null)
                 {
-                    return BadRequest("Email inexistente");
+                    return NotFound("Email inexistente");
                 }
 
                 _userService.DeleteUser(userEntityToDelete);

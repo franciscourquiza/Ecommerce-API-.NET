@@ -31,7 +31,7 @@ namespace e_commerce_API.Controllers
                     return BadRequest();
                 }
                 string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
-                Order createdOrder= _orderService.AddOrder(order, emailClient);
+                Order createdOrder = _orderService.AddOrder(order, emailClient);
 
                 await _orderService.SaveChangesAsync();
                 return CreatedAtRoute(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
