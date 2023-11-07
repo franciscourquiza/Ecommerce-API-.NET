@@ -73,12 +73,18 @@ namespace e_commerce_API.Services.Implementations
         public Order GetOrderById(int id)
         {
             return _context.Orders
+                .Include(a => a.SaleOrderLines)
+                    .ThenInclude(p => p.Product)
                 .SingleOrDefault(p => p.Id == id);
         }
 
         public List<Order?> GetShoppingHistory(string userEmail)
         {
-            return _context.Orders.Where(h => h.ClientEmail == userEmail).Include((a => a.SaleOrderLines)).ToList();
+            return _context.Orders
+                 .Where(h => h.ClientEmail == userEmail)
+                 .Include(a => a.SaleOrderLines)
+                    .ThenInclude(p => p.Product)
+                 .ToList();
         }
         public List<Order> GetOrders() 
         {
@@ -86,7 +92,11 @@ namespace e_commerce_API.Services.Implementations
         }
         public List<Order> GetPendingOrders() 
         {
-            return _context.Orders.Where(o => o.State == OrderState.pending).Include((a => a.SaleOrderLines)).ToList();
+            return _context.Orders
+                .Where(o => o.State == OrderState.pending)
+                .Include(a => a.SaleOrderLines)
+                    .ThenInclude(p=>p.Product)
+                .ToList();
         }
         public async Task<bool> SaveChangesAsync()
         {
