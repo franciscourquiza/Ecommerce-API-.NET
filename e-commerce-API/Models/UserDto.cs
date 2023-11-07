@@ -15,7 +15,13 @@ namespace e_commerce_API.Models
         [Required]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "El campo debe contener solo letras.")]
         public string LastName { get; set; }
+
+        [RegularExpression("^\\d{10}$", ErrorMessage = "El numero debe estar compuesto por 10 cifras.")]
         public string PhoneNumber { get; set; }
+
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$\r\n", ErrorMessage = "La contraseña debe contener al menos una letra minúscula,una mayuscula, un numero y al menos 8 caracteres")]
         public string Password { get; set; }
+
+
     }
 }

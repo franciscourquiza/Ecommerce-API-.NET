@@ -7,7 +7,7 @@ namespace e_commerce_API.Models
     public class ProductDto
     {
         [Required]
-        [Range(0.00, double.MaxValue, ErrorMessage = "El campo Precio debe ser mayor o igual que 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "El campo Precio debe ser mayor que 1.")]
         public float Price { get; set; } = 0;
 
         [Range(0, int.MaxValue, ErrorMessage = "El campo Stock debe ser mayor o igual que 0.")]
