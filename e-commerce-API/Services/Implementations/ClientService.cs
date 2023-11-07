@@ -23,13 +23,14 @@ namespace e_commerce_API.Services.Implementations
             return  _context.Clients.ToList();
         }
 
-        public void AddClient(Client newClient)
+        public void AddClient(ClientDto newClient)
         {
-            if (newClient == null)
+            Client? userEntity = _mapper.Map<Client>(newClient);
+            if (userEntity == null)
             {
-                throw new ArgumentNullException(nameof(newClient));
+                throw new ArgumentNullException(nameof(userEntity));
             }
-            _context.Add(newClient);
+            _context.Add(userEntity);
         }
 
         public void EditClient(EditClientDto client, string emailClient) 

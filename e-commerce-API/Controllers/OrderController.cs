@@ -19,6 +19,7 @@ namespace e_commerce_API.Controllers
             _orderService = orderService;
             _mapper = mapper;
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderDto order) 
         {
@@ -30,29 +31,32 @@ namespace e_commerce_API.Controllers
                     return BadRequest();
                 }
                 string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
-                Order createdOrder= _orderService.AddOrder(order, emailClient);
+                Order createdOrder = _orderService.AddOrder(order, emailClient);
 
                 await _orderService.SaveChangesAsync();
-                return Ok();
-
-
+                return CreatedAtRoute(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
             }
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
+
         [HttpGet("{id}", Name = "GetOrderById")]
         public IActionResult GetOrderById(int id)
         {
-            var order = _orderService.GetOrderById(id); 
-
-            if (order == null)
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Client" || role == "Admin")
             {
-                return NotFound();
-            }
+                var order = _orderService.GetOrderById(id);
 
-            return Ok(order);
+                if (order == null)
+                {
+                    return NotFound("Pedido no encontrado");
+                }
+                return Ok(order);
+            }
+            return Forbid("Acceso no autorizado");
         }
+
         [HttpGet("GetShoppingHistory")]
-        [Authorize]
         public IActionResult GetShoppingHistory()
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
@@ -61,8 +65,7 @@ namespace e_commerce_API.Controllers
                 string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
                 return Ok(_orderService.GetShoppingHistory(emailClient));
             }
-            return Forbid();
-
+            return Forbid("Acceso no autorizado");
         }
 
         [HttpGet("GetAllOrders")]
@@ -71,15 +74,16 @@ namespace e_commerce_API.Controllers
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
                 return Ok(_orderService.GetOrders());
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
+
         [HttpGet("GetPendingOrders")]
         public IActionResult GetPendingOrders() 
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
                 return Ok(_orderService.GetPendingOrders());
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
     }
 }

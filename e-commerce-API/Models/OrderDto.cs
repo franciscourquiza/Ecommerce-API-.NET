@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace e_commerce_API.Models
 {
     public class OrderDto
-    {
+    { 
         [Required]
-        public List<int> OrderedProducts { get; set; }
+        public List<ProductOrderDto> OrderedProducts { get; set; } 
 
     }
 }

@@ -7,8 +7,13 @@ namespace e_commerce_API.Models
     {
         [Required]
         [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "El campo no debe contener símbolos ni caracteres especiales.")]
+        public string State { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "El campo no debe contener símbolos ni caracteres especiales.")]
+        public string City { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "El campo no debe contener símbolos ni caracteres especiales.")]
         public string Adress { get; set; }
-
         [Required]
         [RegularExpression("^[0-9]{8}$", ErrorMessage = "El campo DNI debe contener 8 dígitos.")]
         public int Dni { get; set; }

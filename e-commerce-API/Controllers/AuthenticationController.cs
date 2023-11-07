@@ -30,10 +30,10 @@ namespace e_commerce_API.Controllers
             Tuple<bool, User?> validationResponse = _userService.ValidateUser(authenticationRequestBody.Email, authenticationRequestBody.Password);
             if (!validationResponse.Item1 && validationResponse.Item2 == null) 
             {
-                return NotFound();
+                return NotFound("Email no existente");
             }
             else if (!validationResponse.Item1 && validationResponse.Item2 != null)
-                return Unauthorized();
+                return Unauthorized("Contraseña incorrecta");
 
             var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SecretForKey"]));
             var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);

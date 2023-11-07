@@ -15,56 +15,55 @@ namespace e_commerce_API.Controllers
     {
         private readonly IClientService _clientService;
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        public ClientController(IClientService clientService,IUserService userService ,IMapper mapper)
+        public ClientController(IClientService clientService,IUserService userService)
         {
             _userService = userService;
             _clientService = clientService;
-            _mapper = mapper;
         }
 
         [HttpGet]
         [Authorize]
-
         public IActionResult GetClients() 
         {
             string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "Admin" )
                 return Ok(_clientService.GetClients());
-            return Forbid();
+            return Forbid("Acceso no autorizado");
         }
+
         [HttpGet("{email}", Name = nameof(GetClientByEmail))]
         public IActionResult GetClientByEmail(string email)
         {
             var client = _userService.GetByEmail(email);
             if (client == null)
             {
-                return NotFound();
+                return NotFound("Cliente no encontrado");
             }
             return Ok(client);
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateClient(ClientDto clientForCreation)
         {
-            Client? userEntity = _mapper.Map<Client>(clientForCreation);
-            if (_userService.GetByEmail(userEntity.Email) != null)
+            
+            if (_userService.GetByEmail(clientForCreation.Email) != null)
             {
                 return Conflict("Este Email ya esta en uso");
             }
-            if (userEntity == null)
+            if (clientForCreation == null)
             {
                 return BadRequest();
             }
-            _clientService.AddClient(userEntity);
+            _clientService.AddClient(clientForCreation);
 
             await _clientService.SaveChangesAsync();
 
-            return CreatedAtRoute(nameof(GetClientByEmail), new { email = userEntity.Email }, userEntity);
+            return CreatedAtRoute(nameof(GetClientByEmail), new { email =clientForCreation.Email }, clientForCreation);
 
         }
+
         [HttpPut]
         [Authorize]
-
         public async Task<IActionResult> EditClient(EditClientDto clientEdited)
         {
             string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
