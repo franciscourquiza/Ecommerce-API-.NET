@@ -12,6 +12,7 @@ namespace e_commerce_API.Services.Interfaces
         List<Order> GetPendingOrders();
 
         List<Order?> GetShoppingHistory(string userEmail);
+        void EditOrderState(EditOrderStateDto state, int orderId);
         Task<bool> SaveChangesAsync();
     }
 }
