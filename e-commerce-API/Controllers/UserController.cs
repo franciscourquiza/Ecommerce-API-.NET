@@ -37,7 +37,7 @@ namespace e_commerce_API.Controllers
                 await _userService.SaveChangesAsync();
                 return NoContent();
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
     }
 }

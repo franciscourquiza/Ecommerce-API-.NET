@@ -30,7 +30,7 @@ namespace e_commerce_API.Controllers
             string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "SuperAdmin")
                 return Ok(_superAdminService.GetSuperAdmins());
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
 
         [HttpGet("{email}", Name = nameof(GetSuperAdminByEmail))]
@@ -65,7 +65,7 @@ namespace e_commerce_API.Controllers
 
                 return CreatedAtRoute(nameof(GetSuperAdminByEmail), new { email = userEntity.Email }, userEntity);
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
 
         }
     }
