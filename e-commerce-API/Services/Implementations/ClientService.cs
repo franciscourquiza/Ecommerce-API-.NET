@@ -37,7 +37,7 @@ namespace e_commerce_API.Services.Implementations
         {
             Client clientToEdit = _context.Clients.SingleOrDefault(u => u.Email == emailClient);
             Client clientEdited = _mapper.Map(client, clientToEdit);
-
+             
             _context.Clients.Update(clientEdited);
         } 
         public async Task<bool> SaveChangesAsync()
