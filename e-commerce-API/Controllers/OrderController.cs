@@ -4,6 +4,7 @@ using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace e_commerce_API.Controllers
 {
@@ -21,7 +22,7 @@ namespace e_commerce_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(OrderDto order) 
+        public async Task<IActionResult> CreateOrder(OrderDto order)
         {
             try
             {
@@ -67,7 +68,7 @@ namespace e_commerce_API.Controllers
         public IActionResult GetShoppingHistory()
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
-            if(role == "Client")
+            if (role == "Client")
             {
                 string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
                 return Ok(_orderService.GetShoppingHistory(emailClient));
@@ -76,7 +77,7 @@ namespace e_commerce_API.Controllers
         }
 
         [HttpGet("GetAllOrders")]
-        public IActionResult GetOrders() 
+        public IActionResult GetOrders()
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
@@ -85,11 +86,23 @@ namespace e_commerce_API.Controllers
         }
 
         [HttpGet("GetPendingOrders")]
-        public IActionResult GetPendingOrders() 
+        public IActionResult GetPendingOrders()
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
                 return Ok(_orderService.GetPendingOrders());
+            return Forbid();
+        }
+        [HttpPut]
+        public async Task<IActionResult> EditOrderState(EditOrderStateDto orderStateEdited, int id)
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Admin") 
+            {
+                _orderService.EditOrderState(orderStateEdited, id);
+                await _orderService.SaveChangesAsync();
+                return Ok(orderStateEdited);
+            }
             return Forbid();
         }
     }

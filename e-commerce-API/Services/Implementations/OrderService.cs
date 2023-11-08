@@ -106,6 +106,13 @@ namespace e_commerce_API.Services.Implementations
                     .ThenInclude(p=>p.Product)
                 .ToList();
         }
+        public void EditOrderState(EditOrderStateDto state, int id) 
+        { 
+            Order orderStateToEdit = _context.Orders.SingleOrDefault(o => o.Id == id);
+            Order orderStateEdited = _mapper.Map(state, orderStateToEdit);
+
+            _context.Orders.Update(orderStateEdited);
+        }
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0); //devuelve true si 1 o mas entidades fueron modificadas
