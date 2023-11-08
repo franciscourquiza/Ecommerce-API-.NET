@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FvHjvEPX8Co1xgLgnEq0KASP6fsVy2/nU+1yOLC4ryhSJcizFSHlvafe7WDwGebwlIsmXcExoPRqLFmPgq0ZUg==",
+  "dgSpecHash": "s46uAFHe4DJ7eb2/yOaEjelr+jEIMjytKKDEdB8HaG/DT0i1PESOGRfDBGJZKNmp/m9D7xXaDTCXsqvK6OSI9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+  "projectFilePath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\josed\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\josed\\.nuget\\packages\\automapper.collection\\9.0.0\\automapper.collection.9.0.0.nupkg.sha512",

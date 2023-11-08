@@ -2585,11 +2585,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "projectUniqueName": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
       "projectName": "e-commerce-API",
-      "projectPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "projectPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
       "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
+      "outputPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",

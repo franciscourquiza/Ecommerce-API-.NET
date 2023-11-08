@@ -23,20 +23,27 @@ namespace e_commerce_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderDto order) 
         {
-            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
-            if (role == "Client") 
+            try
             {
-                if (order == null)
+                string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+                if (role == "Client")
                 {
-                    return BadRequest();
-                }
-                string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
-                Order createdOrder = _orderService.AddOrder(order, emailClient);
+                    if (order == null)
+                    {
+                        return BadRequest();
+                    }
+                    string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
+                    Order createdOrder = _orderService.AddOrder(order, emailClient);
 
-                await _orderService.SaveChangesAsync();
-                return CreatedAtRoute(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
+                    await _orderService.SaveChangesAsync();
+                    return CreatedAtRoute(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
+                }
+                return Forbid();
             }
-            return Forbid();
+            catch (Exception)
+            {
+                return BadRequest("Error: La cantidad pedida del producto es mayor que el stock disponible.");
+            }
         }
 
         [HttpGet("{id}", Name = "GetOrderById")]
