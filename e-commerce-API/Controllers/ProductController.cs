@@ -104,5 +104,29 @@ namespace e_commerce_API.Controllers
             return Forbid("Acceso no autorizado");
         }
 
+        [HttpPatch]
+        [Authorize]
+        public async Task<IActionResult> UpdatePrecioStock(int id, ProductUpdateDto product)
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Admin")
+            {
+                Product productUpdateDto = _productService.GetProductById(id);
+
+                if (productUpdateDto == null)
+                    return NotFound("Producto no encontrado");
+                if (product == null)
+                    return BadRequest();
+
+                _mapper.Map(product, productUpdateDto);
+
+                _productService.UpdateProduct(productUpdateDto);
+
+                await _productService.SaveChangesAsync();
+
+                return Ok("Cambiado con Exito");
+            }
+            return Forbid("Acceso no autorizado");
+        }
     }
 }

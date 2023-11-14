@@ -41,6 +41,12 @@ namespace e_commerce_API.Services.Implementations
                 productToDelete.IsDeleted = true;
                 _context.Products.Update(productToDelete); 
         }
+
+        public void UpdatePriceStock(Product productUpdate)
+        {
+            _context.Products.Update(productUpdate);
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);
