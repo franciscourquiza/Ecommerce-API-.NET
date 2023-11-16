@@ -55,7 +55,7 @@ namespace e_commerce_API.Controllers
 
                 return CreatedAtRoute(nameof(GetProductById), new { id = product.Id }, product);
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
 
         [HttpPut("{id}")]
@@ -79,7 +79,7 @@ namespace e_commerce_API.Controllers
 
                 return Ok(productToUpdate);
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
 
         [HttpDelete("{id}")]
@@ -101,7 +101,7 @@ namespace e_commerce_API.Controllers
 
                 return NoContent();
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
 
         [HttpPatch]

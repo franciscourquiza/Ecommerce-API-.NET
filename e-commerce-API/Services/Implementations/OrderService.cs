@@ -30,30 +30,35 @@ namespace e_commerce_API.Services.Implementations
             }
 
             List<int> orderedProductIds = newOrder.OrderedProducts.Select(op => op.IdProduct).ToList();
-            List<int> orderedProductsCuantity = newOrder.OrderedProducts.Select(op => op.ProductQuntity).ToList();
+            List<int> orderedProductsQuantity = newOrder.OrderedProducts.Select(op => op.ProductQuntity).ToList();
             List <Product> productsOrder = _context.Products.Where(p => orderedProductIds.Contains(p.Id)).ToList();
 
             List<SaleOrderLine> salesOrderLine = new List<SaleOrderLine>(); 
             float totalPrice = 0;
 
-            foreach (var product in productsOrder)
+            for (int i = 0; i < productsOrder.Count; i++)
             {
-                foreach(var quantity in orderedProductsCuantity)
+                var product = productsOrder[i];
+                var quantity = orderedProductsQuantity[i];
+
+                if (product.Stock >= quantity)
                 {
-                    if (product.Stock >= quantity)
+                    product.Stock -= quantity;
+                    totalPrice += quantity * product.Price;
+
+                    SaleOrderLine saleOrderLine = new SaleOrderLine
                     {
-                        product.Stock = product.Stock - quantity;
-                        totalPrice = totalPrice + quantity*product.Price;
-                        SaleOrderLine saleOrderLine = new SaleOrderLine
-                        {
-                            ProductId = product.Id,
-                            ProductQuntity = quantity
-                        };
-                        salesOrderLine.Add(saleOrderLine);
-                    }
+                        ProductId = product.Id,
+                        ProductQuntity = quantity
+                    };
+                    salesOrderLine.Add(saleOrderLine);
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
-            
+
             Client client = _context.Clients.FirstOrDefault(c => c.Email == emailClient);
             Order order = new Order
             {
@@ -88,7 +93,10 @@ namespace e_commerce_API.Services.Implementations
         }
         public List<Order> GetOrders() 
         {
-            return _context.Orders.Include((a => a.SaleOrderLines)).ToList();
+            return _context.Orders.
+                Include((a => a.SaleOrderLines))
+                    .ThenInclude(p => p.Product)
+                .ToList();
         }
         public List<Order> GetPendingOrders() 
         {
@@ -97,6 +105,13 @@ namespace e_commerce_API.Services.Implementations
                 .Include(a => a.SaleOrderLines)
                     .ThenInclude(p=>p.Product)
                 .ToList();
+        }
+        public void EditOrderState(EditOrderStateDto state, int id) 
+        { 
+            Order orderStateToEdit = _context.Orders.SingleOrDefault(o => o.Id == id);
+            Order orderStateEdited = _mapper.Map(state, orderStateToEdit);
+
+            _context.Orders.Update(orderStateEdited);
         }
         public async Task<bool> SaveChangesAsync()
         {

@@ -28,7 +28,7 @@ namespace e_commerce_API.Controllers
             string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "Admin" )
                 return Ok(_clientService.GetClients());
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
 
         [HttpGet("{email}", Name = nameof(GetClientByEmail))]

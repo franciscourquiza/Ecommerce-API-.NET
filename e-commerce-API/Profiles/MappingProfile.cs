@@ -24,6 +24,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
             .ForMember(dest => dest.Adress, opt => opt.MapFrom(src => src.Adress))
             .ForMember(dest => dest.Dni, opt => opt.MapFrom(src => src.Dni));
+        CreateMap<EditOrderStateDto, Order>()
+            .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State));
         CreateMap<AdminDto, Admin>()
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))

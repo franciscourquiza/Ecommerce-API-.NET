@@ -2580,11 +2580,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Tomas\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\cvpru\\.nuget\\packages\\": {}
+>>>>>>> 5a6a30abcf64418ac0a0a28f026208df8bcce60d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "E:\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
       "projectName": "e-commerce-API",
       "projectPath": "E:\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
@@ -2593,6 +2598,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "projectName": "e-commerce-API",
+      "projectPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "packagesPath": "C:\\Users\\cvpru\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\cvpru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 5a6a30abcf64418ac0a0a28f026208df8bcce60d
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

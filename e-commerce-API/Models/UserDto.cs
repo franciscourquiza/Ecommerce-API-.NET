@@ -19,7 +19,7 @@ namespace e_commerce_API.Models
         [RegularExpression("^\\d{10}$", ErrorMessage = "El numero debe estar compuesto por 10 cifras.")]
         public string PhoneNumber { get; set; }
 
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$\r\n", ErrorMessage = "La contraseña debe contener al menos una letra minúscula,una mayuscula, un numero y al menos 8 caracteres")]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$", ErrorMessage = "La contraseña debe contener al menos una letra minúscula,una mayuscula, un número y al menos 8 caracteres")]
         public string Password { get; set; }
 
 
