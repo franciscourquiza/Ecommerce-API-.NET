@@ -106,7 +106,7 @@ namespace e_commerce_API.Controllers
 
         [HttpPatch]
         [Authorize]
-        public async Task<IActionResult> UpdatePrecioStock(int id, ProductUpdateDto product)
+        public async Task<IActionResult> UpdatePriceStock(int id, ProductUpdateDto product)
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
@@ -120,13 +120,13 @@ namespace e_commerce_API.Controllers
 
                 _mapper.Map(product, productUpdateDto);
 
-                _productService.UpdateProduct(productUpdateDto);
+                _productService.UpdatePriceStock(productUpdateDto);
 
                 await _productService.SaveChangesAsync();
 
                 return Ok("Cambiado con Exito");
             }
-            return Forbid("Acceso no autorizado");
+            return Forbid();
         }
     }
 }
