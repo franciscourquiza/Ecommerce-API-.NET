@@ -8,9 +8,9 @@ namespace e_commerce_API.Services.Interfaces
         List<Product> GetProducts();
         Product GetProductById(int id);
         void AddProduct(ProductDto productService);
-        void UpdateProduct(ProductDto updatedProduct);
+        void UpdateProduct(ProductDto updatedProduct, int id);
         void DeleteProduct(Product productToDelete);
-        void UpdatePriceStock(ProductPriceStockDto updateProduct);
+        void UpdatePriceStock(ProductPriceStockDto updateProduct, int id);
         Task<bool> SaveChangesAsync();
     }
 }

@@ -21,8 +21,9 @@ namespace e_commerce_API.Services.Implementations
         {
             return _context.Products.Where(p => !p.IsDeleted).ToList();
         }
-        public void AddProduct(Product newProduct)
+        public void AddProduct(ProductDto productForCreation)
         {
+            Product? newProduct = _mapper.Map<Product>(productForCreation);
             if (newProduct == null)
             {
                 throw new ArgumentNullException(nameof(newProduct));
@@ -35,9 +36,11 @@ namespace e_commerce_API.Services.Implementations
             return _context.Products.FirstOrDefault(p => p.Id == id && !p.IsDeleted);
         }
 
-        public void UpdateProduct(ProductDto productForUpdate)
+        public void UpdateProduct(ProductDto productForUpdate, int id)
         {
+
             Product? productUpdated = _mapper.Map<Product>(productForUpdate);
+            productUpdated.Id = id;
             _context.Products.Update(productUpdated);
         }
         
@@ -47,9 +50,10 @@ namespace e_commerce_API.Services.Implementations
                 _context.Products.Update(productToDelete); 
         }
 
-        public void UpdatePriceStock(ProductPriceStockDto productForUpdate)
+        public void UpdatePriceStock(ProductPriceStockDto productForUpdate,int id)
         {
             Product? productUpdated = _mapper.Map<Product>(productForUpdate);
+            productUpdated.Id = id;
             _context.Products.Update(productUpdated);
         }
 

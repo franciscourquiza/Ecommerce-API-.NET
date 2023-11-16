@@ -58,7 +58,7 @@ namespace e_commerce_API.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> UpdateProduct(int id, ProductDto product)
+        public async Task<IActionResult> UpdateProduct(int id, ProductDto productUpdated)
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
@@ -66,12 +66,11 @@ namespace e_commerce_API.Controllers
                 Product productToUpdate = _productService.GetProductById(id);
                 if (productToUpdate == null)
                     return NotFound("Producto no encontrado");
-                if (product == null)
+                if (productUpdated == null)
                     return BadRequest();
+                
 
-                _mapper.Map(product, productToUpdate);
-
-                _productService.UpdateProduct(productToUpdate);
+                _productService.UpdateProduct(productUpdated,id);
 
                 await _productService.SaveChangesAsync();
 
@@ -104,21 +103,20 @@ namespace e_commerce_API.Controllers
 
         [HttpPatch]
         [Authorize]
-        public async Task<IActionResult> UpdatePriceStock(int id, ProductPriceStockDto product)
+        public async Task<IActionResult> UpdatePriceStock(int id, ProductPriceStockDto productUpdated)
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
             {
-                Product productUpdateDto = _productService.GetProductById(id);
+                Product productToUpdate = _productService.GetProductById(id);
 
-                if (productUpdateDto == null)
+                if (productToUpdate == null)
                     return NotFound("Producto no encontrado");
-                if (product == null)
+                if (productUpdated == null)
                     return BadRequest();
 
-                _mapper.Map(product, productUpdateDto);
 
-                _productService.UpdatePriceStock(productUpdateDto);
+                _productService.UpdatePriceStock(productUpdated, id);
 
                 await _productService.SaveChangesAsync();
 
