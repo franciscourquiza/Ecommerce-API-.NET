@@ -14,11 +14,10 @@ namespace e_commerce_API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
-        private readonly IMapper _mapper;
-        public OrderController(IOrderService orderService, IMapper mapper)
+        
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
-            _mapper = mapper;
         }
 
         [HttpPost]

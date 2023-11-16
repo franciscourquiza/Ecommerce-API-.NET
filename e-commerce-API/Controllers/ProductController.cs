@@ -13,11 +13,9 @@ namespace e_commerce_API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
-        public ProductController(IProductService productService, IMapper mapper)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -44,16 +42,16 @@ namespace e_commerce_API.Controllers
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
             {
-                Product? product = _mapper.Map<Product>(productForCreation);
-                if (product == null)
+                
+                if (productForCreation == null)
                 {
                     return BadRequest();
                 }
-                _productService.AddProduct(product);
+                _productService.AddProduct(productForCreation);
 
                 await _productService.SaveChangesAsync();
 
-                return CreatedAtRoute(nameof(GetProductById), new { id = product.Id }, product);
+                return CreatedAtRoute(nameof(GetProductById), productForCreation);
             }
             return Forbid();
         }
@@ -106,7 +104,7 @@ namespace e_commerce_API.Controllers
 
         [HttpPatch]
         [Authorize]
-        public async Task<IActionResult> UpdatePriceStock(int id, ProductUpdateDto product)
+        public async Task<IActionResult> UpdatePriceStock(int id, ProductPriceStockDto product)
         {
             string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
             if (role == "Admin")
