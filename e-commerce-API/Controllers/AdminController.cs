@@ -16,12 +16,11 @@ namespace e_commerce_API.Controllers
     {
         private readonly IAdminService _adminService;
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        public AdminController(IAdminService adminService, IUserService userService, IMapper mapper)
+
+        public AdminController(IAdminService adminService, IUserService userService)
         {
             _userService = userService;
             _adminService = adminService;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -52,20 +51,20 @@ namespace e_commerce_API.Controllers
             string role = User.Claims.SingleOrDefault(c => c.Type.Contains("role")).Value;
             if (role == "SuperAdmin")
             {
-                Admin? userEntity = _mapper.Map<Admin>(adminForCreation);
-                if (_userService.GetByEmail(userEntity.Email) != null)
+                
+                if (_userService.GetByEmail(adminForCreation.Email) != null)
                 {
                     return Conflict("Este Email ya esta en uso");
                 }
-                if (userEntity == null)
+                if (adminForCreation == null)
                 {
                     return BadRequest();
                 }
-                _adminService.AddAdmin(userEntity);
+                _adminService.AddAdmin(adminForCreation);
 
                 await _adminService.SaveChangesAsync();
 
-                return CreatedAtRoute(nameof(GetAdminByEmail), new { email = userEntity.Email }, userEntity);
+                return CreatedAtRoute(nameof(GetAdminByEmail), new { email = adminForCreation.Email }, adminForCreation);
             }
             return Forbid();
         }

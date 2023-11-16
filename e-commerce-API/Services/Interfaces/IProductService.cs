@@ -1,4 +1,5 @@
 ﻿using e_commerce_API.Data.Entities;
+using e_commerce_API.Models;
 
 namespace e_commerce_API.Services.Interfaces
 {
@@ -6,10 +7,10 @@ namespace e_commerce_API.Services.Interfaces
     {
         List<Product> GetProducts();
         Product GetProductById(int id);
-        void AddProduct(Product productService);
-        void UpdateProduct(Product updatedProduct);
+        void AddProduct(ProductDto productService);
+        void UpdateProduct(ProductDto productUpdated, Product productToUpdate);
         void DeleteProduct(Product productToDelete);
-        void UpdatePriceStock(Product updateProduct);
+        void UpdatePriceStock(ProductPriceStockDto productUpdated, Product productToUpdate);
         Task<bool> SaveChangesAsync();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace e_commerce_API.Models
 {
-    public class ProductUpdateDto
+    public class ProductPriceStockDto
     {
         [Range(1, double.MaxValue, ErrorMessage = "El campo Precio debe ser mayor que 1.")]
         public int UpdatePrice { get; set; }

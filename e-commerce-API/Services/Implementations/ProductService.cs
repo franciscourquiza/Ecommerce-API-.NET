@@ -1,6 +1,9 @@
-﻿using e_commerce_API.Context;
+﻿using AutoMapper;
+using e_commerce_API.Context;
 using e_commerce_API.Data.Entities;
+using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace e_commerce_API.Services.Implementations
@@ -8,17 +11,20 @@ namespace e_commerce_API.Services.Implementations
     public class ProductService: IProductService
     {
         private readonly EcommerceContext _context;
-        public ProductService(EcommerceContext context)
+        private readonly IMapper _mapper;
+        public ProductService(EcommerceContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public List<Product> GetProducts()
         {
             return _context.Products.Where(p => !p.IsDeleted).ToList();
         }
-        public void AddProduct(Product newProduct)
+        public void AddProduct(ProductDto productForCreation)
         {
+            Product? newProduct = _mapper.Map<Product>(productForCreation);
             if (newProduct == null)
             {
                 throw new ArgumentNullException(nameof(newProduct));
@@ -31,9 +37,11 @@ namespace e_commerce_API.Services.Implementations
             return _context.Products.FirstOrDefault(p => p.Id == id && !p.IsDeleted);
         }
 
-        public void UpdateProduct(Product productUpdated)
+        public void UpdateProduct(ProductDto productUpdated, Product productToUpdate)
         {
-            _context.Products.Update(productUpdated);
+
+            _mapper.Map(productUpdated, productToUpdate);
+            _context.Products.Update(productToUpdate);
         }
         
         public void DeleteProduct(Product productToDelete) 
@@ -42,9 +50,11 @@ namespace e_commerce_API.Services.Implementations
                 _context.Products.Update(productToDelete); 
         }
 
-        public void UpdatePriceStock(Product productUpdate)
+        public void UpdatePriceStock(ProductPriceStockDto productUpdated, Product productToUpdate)
         {
-            _context.Products.Update(productUpdate);
+            
+            _mapper.Map(productUpdated, productToUpdate);
+            _context.Products.Update(productToUpdate);
         }
 
         public async Task<bool> SaveChangesAsync()
