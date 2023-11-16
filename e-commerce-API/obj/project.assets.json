@@ -2580,19 +2580,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cvpru\\.nuget\\packages\\": {}
+    "C:\\Users\\josed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "projectUniqueName": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\Programacion3\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
       "projectName": "e-commerce-API",
-      "projectPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
-      "packagesPath": "C:\\Users\\cvpru\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cvpru\\OneDrive\\Escritorio\\EcommerceApi\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
+      "projectPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\Programacion3\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\e-commerce-API.csproj",
+      "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\Programacion3\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cvpru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2698,8 +2698,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\josed\\OneDrive\\Escritorio\\Carpetas\\Tecnicatura\\Programacion3\\TPI\\TPI-PROG3-.NET\\e-commerce-API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

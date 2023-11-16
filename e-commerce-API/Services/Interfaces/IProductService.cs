@@ -9,6 +9,7 @@ namespace e_commerce_API.Services.Interfaces
         void AddProduct(Product productService);
         void UpdateProduct(Product updatedProduct);
         void DeleteProduct(Product productToDelete);
+        void UpdatePriceStock(Product updateProduct);
         Task<bool> SaveChangesAsync();
     }
 }

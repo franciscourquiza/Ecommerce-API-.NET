@@ -45,5 +45,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.SizeClothes, opt => opt.MapFrom(src => src.SizeClothes))
             .ForMember(dest => dest.StyleClothes, opt => opt.MapFrom(src => src.StyleClothes))
             .ForMember(dest => dest.TypeClothes, opt => opt.MapFrom(src => src.TypeClothes));
+        CreateMap<ProductUpdateDto, Product>()
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.UpdatePrice))
+            .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.UpdateStock));
     }
 }
