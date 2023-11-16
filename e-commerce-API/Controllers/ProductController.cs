@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using e_commerce_API.Data.Entities;
+﻿using e_commerce_API.Data.Entities;
 using e_commerce_API.Models;
-using e_commerce_API.Services.Implementations;
 using e_commerce_API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +68,7 @@ namespace e_commerce_API.Controllers
                     return BadRequest();
                 
 
-                _productService.UpdateProduct(productUpdated,id);
+                _productService.UpdateProduct(productUpdated,productToUpdate);
 
                 await _productService.SaveChangesAsync();
 
@@ -116,11 +114,11 @@ namespace e_commerce_API.Controllers
                     return BadRequest();
 
 
-                _productService.UpdatePriceStock(productUpdated, id);
+                _productService.UpdatePriceStock(productUpdated, productToUpdate);
 
                 await _productService.SaveChangesAsync();
 
-                return Ok("Cambiado con Exito");
+                return Ok(productToUpdate);
             }
             return Forbid();
         }

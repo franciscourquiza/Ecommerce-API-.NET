@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using e_commerce_API.Context;
 using e_commerce_API.Data.Entities;
-using e_commerce_API.Data.Enum;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
-using Microsoft.AspNetCore.Server.IIS.Core;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace e_commerce_API.Services.Implementations
 {

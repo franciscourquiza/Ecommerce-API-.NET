@@ -3,6 +3,7 @@ using e_commerce_API.Context;
 using e_commerce_API.Data.Entities;
 using e_commerce_API.Models;
 using e_commerce_API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace e_commerce_API.Services.Implementations
@@ -36,12 +37,11 @@ namespace e_commerce_API.Services.Implementations
             return _context.Products.FirstOrDefault(p => p.Id == id && !p.IsDeleted);
         }
 
-        public void UpdateProduct(ProductDto productForUpdate, int id)
+        public void UpdateProduct(ProductDto productUpdated, Product productToUpdate)
         {
 
-            Product? productUpdated = _mapper.Map<Product>(productForUpdate);
-            productUpdated.Id = id;
-            _context.Products.Update(productUpdated);
+            _mapper.Map(productUpdated, productToUpdate);
+            _context.Products.Update(productToUpdate);
         }
         
         public void DeleteProduct(Product productToDelete) 
@@ -50,11 +50,11 @@ namespace e_commerce_API.Services.Implementations
                 _context.Products.Update(productToDelete); 
         }
 
-        public void UpdatePriceStock(ProductPriceStockDto productForUpdate,int id)
+        public void UpdatePriceStock(ProductPriceStockDto productUpdated, Product productToUpdate)
         {
-            Product? productUpdated = _mapper.Map<Product>(productForUpdate);
-            productUpdated.Id = id;
-            _context.Products.Update(productUpdated);
+            
+            _mapper.Map(productUpdated, productToUpdate);
+            _context.Products.Update(productToUpdate);
         }
 
         public async Task<bool> SaveChangesAsync()
