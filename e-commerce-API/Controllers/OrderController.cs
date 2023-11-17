@@ -105,7 +105,7 @@ namespace e_commerce_API.Controllers
                 {
                     _orderService.EditOrderState(orderStateEdited, id);
                     await _orderService.SaveChangesAsync();
-                    return Ok(orderStateEdited);
+                    return Ok("Estado de la orden cambiada");
                 }
                 return NotFound("Orden no encontrada");
             }
@@ -130,7 +130,7 @@ namespace e_commerce_API.Controllers
 
                         _orderService.EditOrderState(orderStateEdited, id);
                         await _orderService.SaveChangesAsync();
-                        return Ok(orderStateEdited);
+                        return Ok("Orden Cancelada");
                     }
                     return Forbid();
                 }
