@@ -66,6 +66,10 @@ namespace e_commerce_API.Controllers
         [Authorize]
         public async Task<IActionResult> EditClient(EditClientDto clientEdited)
         {
+            if (clientEdited == null)
+            {
+                return BadRequest();
+            }
             string emailClient = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
             _clientService.EditClient(clientEdited, emailClient);
             await _clientService.SaveChangesAsync();

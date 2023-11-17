@@ -30,6 +30,14 @@ namespace e_commerce_API.Services.Implementations
             SuperAdmin? newSuperAdmin = _mapper.Map<SuperAdmin>(superAdminForCreation);
             _context.Add(newSuperAdmin);
         }
+
+        public void EditSuperAdmin(EditAdminSuperAdminDto superAdmin, string emailSuperAdmin)
+        {
+            SuperAdmin adminToEdit = _context.SuperAdmins.SingleOrDefault(u => u.Email == emailSuperAdmin);
+            SuperAdmin adminEdited = _mapper.Map(superAdmin, adminToEdit);
+
+            _context.SuperAdmins.Update(adminEdited);
+        }
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0); 

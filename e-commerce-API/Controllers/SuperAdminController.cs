@@ -66,5 +66,18 @@ namespace e_commerce_API.Controllers
             return Forbid();
 
         }
+        [HttpPut]
+        [Authorize]
+        public async Task<IActionResult> EditClient(EditAdminSuperAdminDto superAdminEdited)
+        {
+            if (superAdminEdited == null)
+            {
+                return BadRequest();
+            }
+            string emailSuperAdmin = User.Claims.SingleOrDefault(c => c.Type.Contains("nameidentifier")).Value;
+            _superAdminService.EditSuperAdmin(superAdminEdited, emailSuperAdmin);
+            await _superAdminService.SaveChangesAsync();
+            return Ok(superAdminEdited);
+        }
     }
 }

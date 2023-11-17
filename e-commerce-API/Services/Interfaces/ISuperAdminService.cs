@@ -7,6 +7,8 @@ namespace e_commerce_API.Services.Interfaces
     {
         List<SuperAdmin> GetSuperAdmins();
         void AddSuperAdmin(SuperAdminDto superAdminForCreation);
+        
+        void EditSuperAdmin(EditAdminSuperAdminDto superAdminEdited, string emailSuperAdmin);
         Task<bool> SaveChangesAsync();
     }
 }
