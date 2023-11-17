@@ -77,28 +77,6 @@ namespace e_commerce_API.Controllers
             return Forbid();
         }
 
-        [HttpDelete("{id}")]
-        [Authorize]
-        public async Task<IActionResult> DeleteProduct(int id)
-        {
-            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
-            if (role == "Admin")
-            {
-                Product productToDelete = _productService.GetProductById(id);
-
-                if (productToDelete == null)
-                {
-                    return NotFound("Producto no encontrado");
-                }
-                _productService.DeleteProduct(productToDelete);
-
-                await _productService.SaveChangesAsync();
-
-                return NoContent();
-            }
-            return Forbid();
-        }
-
         [HttpPatch]
         [Authorize]
         public async Task<IActionResult> UpdatePriceStock(int id, ProductPriceStockDto productUpdated)
@@ -119,6 +97,28 @@ namespace e_commerce_API.Controllers
                 await _productService.SaveChangesAsync();
 
                 return Ok(productToUpdate);
+            }
+            return Forbid();
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            string role = User.Claims.SingleOrDefault(o => o.Type.Contains("role")).Value;
+            if (role == "Admin")
+            {
+                Product productToDelete = _productService.GetProductById(id);
+
+                if (productToDelete == null)
+                {
+                    return NotFound("Producto no encontrado");
+                }
+                _productService.DeleteProduct(productToDelete);
+
+                await _productService.SaveChangesAsync();
+
+                return NoContent();
             }
             return Forbid();
         }

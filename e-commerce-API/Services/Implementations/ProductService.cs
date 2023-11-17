@@ -43,18 +43,17 @@ namespace e_commerce_API.Services.Implementations
             _mapper.Map(productUpdated, productToUpdate);
             _context.Products.Update(productToUpdate);
         }
-        
-        public void DeleteProduct(Product productToDelete) 
-        {
-                productToDelete.IsDeleted = true;
-                _context.Products.Update(productToDelete); 
-        }
 
         public void UpdatePriceStock(ProductPriceStockDto productUpdated, Product productToUpdate)
         {
             
             _mapper.Map(productUpdated, productToUpdate);
             _context.Products.Update(productToUpdate);
+        }
+        public void DeleteProduct(Product productToDelete) 
+        {
+                productToDelete.IsDeleted = true;
+                _context.Products.Update(productToDelete); 
         }
 
         public async Task<bool> SaveChangesAsync()
