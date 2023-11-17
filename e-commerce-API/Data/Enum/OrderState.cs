@@ -3,6 +3,8 @@
     public enum OrderState
     {
         pending,
-        delivered
+        accepted,
+        rejected,
+        canceled
     }
 }

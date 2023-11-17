@@ -7,6 +7,7 @@ namespace e_commerce_API.Models
     public class EditOrderStateDto
     {
         [Required]
+        [EnumDataType(typeof(OrderState), ErrorMessage = "Valor de estado no válido")]
         public OrderState State { get; set; }
     }
 }

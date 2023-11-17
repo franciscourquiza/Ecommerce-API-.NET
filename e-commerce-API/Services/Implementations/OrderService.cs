@@ -107,8 +107,31 @@ namespace e_commerce_API.Services.Implementations
                 .ToList();
         }
         public void EditOrderState(EditOrderStateDto state, int id) 
-        { 
-            Order orderStateToEdit = _context.Orders.SingleOrDefault(o => o.Id == id);
+        {
+            Order orderStateToEdit = _context.Orders
+                                     .Include(a => a.SaleOrderLines)
+                                        .ThenInclude(p => p.Product)
+                                     .SingleOrDefault(o => o.Id == id);
+            if (state.State == OrderState.canceled || state.State == OrderState.rejected)
+            {
+                List<int> orderedProductIds = orderStateToEdit.SaleOrderLines.Select(o => o.ProductId).ToList();
+                List<int> orderedProductsQuantity = orderStateToEdit.SaleOrderLines.Select(o => o.ProductQuntity).ToList();
+                List<Product> productsOrder = _context.Products.Where(p => orderedProductIds.Contains(p.Id)).ToList();
+                for (int i = 0; i < productsOrder.Count; i++)
+                {
+                    var product = productsOrder[i];
+                    var quantity = orderedProductsQuantity[i];
+
+                    if (product.Stock >= quantity)
+                    {
+                        product.Stock += quantity;
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
             Order orderStateEdited = _mapper.Map(state, orderStateToEdit);
 
             _context.Orders.Update(orderStateEdited);
