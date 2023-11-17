@@ -1,0 +1,899 @@
+{
+	"info": {
+		"_postman_id": "13fc35db-828b-44fa-b750-883725a3acd5",
+		"name": "API-ECOMMERCE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26662840"
+	},
+	"item": [
+		{
+			"name": "ClientEndpoints",
+			"item": [
+				{
+					"name": "GetClients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyckBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiSnVhbiIsInJvbGUiOiJDbGllbnQiLCJuYmYiOjE3MDAxODQyOTUsImV4cCI6MTcwMDE4Nzg5NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTI4NTIvIiwiYXVkIjoiZS1jb21tZXJjZS5hcGkifQ.3X3fxUy-Ws1YixIfa4iPKIXx6Xsqy72eBfq7znQrfhI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Client",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetClientByEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7224/api/Client/user@gmail.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Client",
+								"user@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"pedromarchetti@gmail.com\",\r\n  \"name\": \"Pedro\",\r\n  \"lastName\": \"Marchetti\",\r\n  \"phoneNumber\": \"3416224288\",\r\n  \"password\": \"Abc1234567\",\r\n  \"state\": \"Santa Fe\",\r\n  \"city\": \"Arroyo Seco\",\r\n  \"adress\": \"San Martin 4545\",\r\n  \"dni\": 40497782\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Client",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditClient",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"phoneNumber\": 0,\r\n  \"state\": \"string\",\r\n  \"city\": \"string\",\r\n  \"adress\": \"string\",\r\n  \"dni\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Client",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SuperAdminEndpoints",
+			"item": [
+				{
+					"name": "GetASuperAdminByEmail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/SuperAdmin/superadmin@example.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"SuperAdmin",
+								"superadmin@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSuperAdmins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/SuperAdmin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"SuperAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateSuperAdmin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"superAdminPrimero@gmail.com\",\r\n  \"name\": \"SuperAdmin\",\r\n  \"lastName\": \"Primero\",\r\n  \"phoneNumber\": \"9946685949\",\r\n  \"password\": \"Abc123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/SuperAdmin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"SuperAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditSuperAdmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\": \"SuperAdmin\",\r\n    \"lastName\": \"Actualizado\",\r\n    \"phoneNumber\": \"9903021490\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/SuperAdmin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"SuperAdmin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdminEndpoints",
+			"item": [
+				{
+					"name": "GetAdminByEmail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Admin/admin@example.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Admin",
+								"admin@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAdmins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Admin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAdmin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"adminPrimero@gmail.com\",\r\n  \"name\": \"Admin\",\r\n  \"lastName\": \"Primero\",\r\n  \"phoneNumber\": \"9946685949\",\r\n  \"password\": \"Abc123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Admin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditAdmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\": \"Admin\",\r\n    \"lastName\": \"Actualizado\",\r\n    \"phoneNumber\": \"9903021490\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Admin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserEndpoints",
+			"item": [
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7224/api/User/juan%40gmail.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"User",
+								"juan%40gmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductEndpoints",
+			"item": [
+				{
+					"name": "GetProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7224/api/product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7224/api/Product/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"price\": 100,\r\n  \"stock\": 7,\r\n  \"brand\": \"Topper\",\r\n  \"sizeClothes\": 0,\r\n  \"styleClothes\": 0,\r\n  \"typeClothes\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"price\": 150,\r\n  \"stock\": 4,\r\n  \"brand\": \"Topper\",\r\n  \"sizeClothes\": 0,\r\n  \"styleClothes\": 0,\r\n  \"typeClothes\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Product/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePriceAndStock",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"updatePrice\": 500,\r\n  \"updateStock\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Product/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7224/api/Product/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderEndPoints",
+			"item": [
+				{
+					"name": "GetShoppingHistory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyckBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiSnVhbiIsInJvbGUiOiJDbGllbnQiLCJuYmYiOjE3MDAxODQyOTUsImV4cCI6MTcwMDE4Nzg5NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTI4NTIvIiwiYXVkIjoiZS1jb21tZXJjZS5hcGkifQ.3X3fxUy-Ws1YixIfa4iPKIXx6Xsqy72eBfq7znQrfhI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Order/GetShoppingHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order",
+								"GetShoppingHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Order",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Order/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPendingOrders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Order/GetPendingOrders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order",
+								"GetPendingOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZWRyb21hcmNoZXR0aUBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiUGVkcm8iLCJyb2xlIjoiQ2xpZW50IiwibmJmIjoxNzAwMTg1NDM4LCJleHAiOjE3MDAxODkwMzgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjUyODUyLyIsImF1ZCI6ImUtY29tbWVyY2UuYXBpIn0.RJwoCmdv3Y2klzxS6hO8le-rqBlQHKNKqWUR82eTdJE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderedProducts\": [\r\n    {\r\n      \"idProduct\": 2,\r\n      \"productQuntity\": 11\r\n    },\r\n    {\r\n      \"idProduct\": 3,\r\n      \"productQuntity\": 10\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Order",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChangeStateOrder",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Order/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CancellOrder",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZWRyb21hcmNoZXR0aUBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiUGVkcm8iLCJyb2xlIjoiQ2xpZW50IiwibmJmIjoxNzAwMTg1NDM4LCJleHAiOjE3MDAxODkwMzgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjUyODUyLyIsImF1ZCI6ImUtY29tbWVyY2UuYXBpIn0.RJwoCmdv3Y2klzxS6hO8le-rqBlQHKNKqWUR82eTdJE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7224/api/Order/cancellOrder/8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Order",
+								"cancellOrder",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "LoginClient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"userr@gmail.com\",\r\n    \"password\": \"Abc1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@example.com\",\r\n  \"password\": \"Abc123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginSuperAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"superadmin@example.com\",\r\n  \"password\": \"string\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7224/api/Authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7224",
+							"path": [
+								"api",
+								"Authentication"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
