@@ -68,7 +68,7 @@ namespace e_commerce_API.Controllers
         }
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> EditClient(EditAdminSuperAdminDto superAdminEdited)
+        public async Task<IActionResult> EditSuperAdmin(EditAdminSuperAdminDto superAdminEdited)
         {
             if (superAdminEdited == null)
             {
